@@ -1,0 +1,241 @@
+<h1>Computer Vision</h1>
+
+<input #file type="file" accept='image/*' (change)="filePicked(file.files)" />
+
+<div *ngIf="imageUrl">
+  <h3>Original Image</h3>
+  <img [src]="imageUrl" height="200">
+</div>
+
+<div *ngIf="result">
+  <div *ngIf="result.adult">
+    <h3>Content Classification</h3>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Adult</th>
+          <th>Adult Score</th>
+          <th>Racy</th>
+          <th>Racy Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ result.adult.isAdultContent }}</td>
+          <td>{{ (result.adult.adultScore * 100).toFixed(2) }} %</td>
+          <td>{{ result.adult.isRacyContent }}</td>
+          <td>{{ (result.adult.racyScore * 100).toFixed(2) }} %</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="result.brands">
+    <h3>Brands</h3>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Score</th>
+          <th>X</th>
+          <th>Y</th>
+          <th>Dimension</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let brand of result.brands">
+          <td>{{ brand.name }}</td>
+          <td>{{ (brand.confidence * 100).toFixed(2) }} %</td>
+          <td>{{ brand.rectangle.x }}</td>
+          <td>{{ brand.rectangle.y }}</td>
+          <td>{{ brand.rectangle.w }}x{{ brand.rectangle.h }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="result.categories">
+    <h3>Categories</h3>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Celebrities</th>
+          <th>Landmarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of result.categories">
+          <td>{{ c.name }}</td>
+          <td>{{ (c.score * 100).toFixed(2) }} %</td>
+          <td>{{ c.detail && c.detail.celebrities ? c.detail.celebrities.join(', ') : '' }}</td>
+          <td>{{ c.detail && c.detail.landmarks ? c.detail.landmarks.join(', ') : '' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="result.color">
+    <h3>Colors</h3>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Accent</th>
+          <th>Background</th>
+          <th>Foreground</th>
+          <th>B/W</th>
+          <th>Other</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ result.color.accentColor }}</td>
+          <td>{{ result.color.dominantColorBackground }}</td>
+          <td>{{ result.color.dominantColorForeground }}</td>
+          <td>{{ result.color.isBWImg }}</td>
+          <td>{{ result.color.dominantColors.join(', ') }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="result.description">
+    <h3>Description</h3>
+    <div *ngIf="result.description.captions">
+      <h4>Captions</h4>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Text</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let caption of result.description.captions">
+            <td>{{ caption.text }}</td>
+            <td>{{ (caption.confidence * 100).toFixed(2) }} %</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="result.description.tags">
+      <h4>Tags</h4>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Tag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tag of result.description.tags">
+            <td>{{ tag }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="result.faces">
+    <h3>Faces</h3>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>X</th>
+          <th>Y</th>
+          <th>Dimension</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let face of result.faces">
+          <td>{{ face.gender }}</td>
+          <td>{{ face.age }}</td>
+          <td>{{ face.faceRectangle.left }}</td>
+          <td>{{ face.faceRectangle.top }}</td>
+          <td>{{ face.faceRectangle.width }}x{{ face.faceRectangle.height }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="result.metadata">
+    <h3>Metadata</h3>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Format</th>
+          <th>Dimension</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ result.metadata.format }}</td>
+          <td>{{ result.metadata.width }}x{{ result.metadata.height }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="result.objects">
+    <h3>Objects</h3>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Object</th>
+          <th>Score</th>
+          <th>X</th>
+          <th>Y</th>
+          <th>Dimension</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of result.objects">
+          <td>{{ obj.object }}</td>
+          <td>{{ (obj.confidence * 100).toFixed(2) }} %</td>
+          <td>{{ obj.rectangle.x }}</td>
+          <td>{{ obj.rectangle.y }}</td>
+          <td>{{ obj.rectangle.w }}x{{ obj.rectangle.h }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="result.tags">
+    <h3>Tags</h3>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Score</th>
+          <!-- <th>Hint</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tag of result.tags">
+          <td>{{ tag.name }}</td>
+          <td>{{ (tag.confidence * 100).toFixed(2) }} %</td>
+          <!-- TODO -->
+          <!-- <td>{{ tag.hint }}</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="text">
+  <h3>Extracted Text</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Text</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of text">
+        <td>{{ t }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

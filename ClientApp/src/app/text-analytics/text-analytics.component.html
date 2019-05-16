@@ -1,0 +1,89 @@
+<h1>Text Analytics</h1>
+
+<div>
+  <p>Please enter text to analyze:</p><input #textbox type="text" [(ngModel)]="input"
+    placeholder="I had a wonderful trip to Seattle and enjoyed seeing the Space Needle!">
+  <button (click)="analyze()">Analyze</button>
+</div>
+
+<div *ngIf="languages">
+  <h3>Languages</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>ISO6391 Name</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let language of languages">
+        <td>{{ language.name }}</td>
+        <td>{{ language.iso6391Name }}</td>
+        <td>{{ (language.score * 100).toFixed(2) }} %</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="sentiment">
+  <h3>Sentiment</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Sentiment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ (sentiment * 100).toFixed(2) }} %</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="keyPhrases">
+  <h3>Key Phrases</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Phrase</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let phrase of keyPhrases">
+        <td>{{ phrase }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="entities">
+  <h3>Entities</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Entity</th>
+        <th>Type</th>
+        <th>Position</th>
+        <th>Length</th>
+        <th>Subtype</th>
+        <th>Type Score</th>
+        <th>Wiki</th>
+        <th>Wiki Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entity of entities">
+        <td>{{ entity.name }}</td>
+        <td>{{ entity.type }}</td>
+        <td>{{ entity.matches[0].offset }}</td>
+        <td>{{ entity.matches[0].length }}</td>
+        <td>{{ entity.subType }}</td>
+        <td>{{ (entity.matches[0].entityTypeScore * 100).toFixed(2) }} %</td>
+        <td><a href="{{entity.wikipediaUrl}}">{{ entity.wikipediaUrl }}</a></td>
+        <td>{{ (entity.matches[0].wikipediaScore * 100).toFixed(2) }} %</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
