@@ -1,10 +1,10 @@
 # TASK 1
 
-Create an Microsoft Azure Account.
+Create an Microsoft Azure Account. For more information visit https://azure.microsoft.com/en-us/free/.
 
 # TASK 2
 
-1. Create Cognitive Services Resource within the Azure Portal.
+1. Create Cognitive Services Resource within the Azure Portal. For more information visit https://docs.microsoft.com/en-us/azure/cognitive-services/cognitive-services-apis-create-account#create-and-subscribe-to-an-azure-cognitive-services-resource.
 2. Remember the required credentials to access your resource.
     - Endpoint URL
     - Subscription Key
@@ -41,12 +41,18 @@ If the build was successful, open the app by visiting http://localhost:5000.
 
 # TASK 5: Text Analytics
 
-1. Implement the `DetectLanguage` method in the `TextAnalyticsService` class.
-2. Implement the `AnalyzeSentiment` method in the `TextAnalyticsService` class.
-3. Implement the `AnalyzeEntities` method in the `TextAnalyticsService` class.
-4. Implement the `AnalyzeKeyPhrases` method in the `TextAnalyticsService` class.
+Basic documentation: https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/.
+
+1. Insert your credentials (Task 2.2) into the properties of the `TextAnalyticsService` class respectively.
+2. Implement the `DetectLanguage` method in the `TextAnalyticsService` class. For more information visit https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/quickstarts/csharp#perform-language-detection.
+3. Implement the `AnalyzeSentiment` method in the `TextAnalyticsService` class. For more information visit https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/quickstarts/csharp#perform-sentiment-analysis.
+4. Implement the `RecognizeEntities` method in the `TextAnalyticsService` class. For more information visit https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/quickstarts/csharp#perform-entity-recognition.
+5. Implement the `ExtractKeyPhrases` method in the `TextAnalyticsService` class. For more information visit https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/quickstarts/csharp#perform-key-phrase-extraction.
 
 # TASK 6: Computer Vision
 
-1. Implement the `AnalyzeImage` method in the `ComputerVisionService` class.
-2. Implement the `ExtractText` method in the `ComputerVisionService` class.
+Basic documentation: https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/.
+
+1. Insert your credentials (Task 2.2) into the properties of the `ComputerVisionService` class respectively.
+2. Implement the `AnalyzeImage` method in the `ComputerVisionService` class. For more information visit https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts-sdk/csharp-analyze-sdk.
+3. Implement the `ExtractText` method in the `ComputerVisionService` class. For more information visit https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts-sdk/csharp-hand-text-sdk.

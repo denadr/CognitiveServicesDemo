@@ -31,13 +31,13 @@ namespace CognitiveServicesDemo.Controllers
         [HttpGet("[action]")]
         public async Task<dynamic> AnalyzeEntities([FromQuery] string input)
         {
-            return await _textAnalytics.AnalyzeEntities(input);
+            return await _textAnalytics.RecognizeEntities(input);
         }
 
         [HttpGet("[action]")]
         public async Task<dynamic> AnalyzeKeyPhrases([FromQuery] string input)
         {
-            return await _textAnalytics.AnalyzeKeyPhrases(input);
+            return await _textAnalytics.ExtractKeyPhrases(input);
         }
     }
 }

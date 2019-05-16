@@ -20,12 +20,12 @@ public class TextAnalyticsService
         return null;
     }
 
-    public async Task<IList<EntityRecord>> AnalyzeEntities(string input)
+    public async Task<IList<EntityRecord>> RecognizeEntities(string input)
     {
         return null;
     }
 
-    public async Task<IList<string>> AnalyzeKeyPhrases(string input)
+    public async Task<IList<string>> ExtractKeyPhrases(string input)
     {
         return null;
     }
