@@ -9,6 +9,10 @@ Create an Microsoft Azure Account.
     - Endpoint URL
     - Subscription Key
 
+If this is not possible for any reason, you could use the credentials of my demo resource:
+- Endpoint URL: `https://westeurope.api.cognitive.microsoft.com/`
+- Subscription Key: just ask me ;)
+
 # TASK 3
 
 Install required Cognitive Services NuGet packages
